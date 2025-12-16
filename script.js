@@ -63,16 +63,17 @@ function teamCards() {
   let cards = "";
   // Ciclo l'array dei membri
   for (let i = 0; i < teamMembers.length; i++) {
-    const member = teamMembers[i];
+    // destructuring delle proprietà del singolo oggetto membro
+    const { name, role, email, img } = teamMembers[i];
     // Ad ogni giro aggiungo alle cards un nuovo oggetto(singolo membro) con i relativi dati 
     cards += `<div class="team-card">
       <div class="card-image">
-        <img src="${member.img}" alt="${member.name}"/>
+        <img src="${img}" alt="${name}"/>
       </div>
       <div class="card-text">
-        <h3>${member.name}</h3>
-        <p>${member.role}</p>
-        <p>${member.email}</p>
+        <h3>${name}</h3>
+        <p>${role}</p>
+        <p>${email}</p>
       </div>
     </div>
     `;

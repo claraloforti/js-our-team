@@ -36,3 +36,77 @@ const teamMembers = [
     img: "img/female3.png"
   }
 ];
+
+// SETUP
+// Mostro in pagina le cards dei membri del team
+const output = document.querySelector(".team-container");
+
+// Richiamo funzione per far spuntare in pagina le cards membri
+teamCards();
+
+// Seleziono elementi form
+const form = document.getElementById("member-form");
+const newName = document.getElementById('name');
+const newRole = document.getElementById('role');
+const newEmail= document.getElementById('email');
+const newImage = document.getElementById('image');
+
+
+// Evento al submit sul form per aggiungere nuovo membro, richiamando la funzione addMember
+form.addEventListener("submit", addMember);
+
+
+// FUNZIONI
+
+// Funzione per mostrare le cards in pagina
+function teamCards() {
+  let cards = "";
+  // Ciclo l'array dei membri
+  for (let i = 0; i < teamMembers.length; i++) {
+    const member = teamMembers[i];
+    // Ad ogni giro aggiungo alle cards un nuovo oggetto(singolo membro) con i relativi dati 
+    cards += `<div class="team-card">
+      <div class="card-image">
+        <img src="${member.img}" alt="${member.name}"/>
+      </div>
+      <div class="card-text">
+        <h3>${member.name}</h3>
+        <p>${member.role}</p>
+        <p>${member.email}</p>
+      </div>
+    </div>
+    `;
+  }
+  // Aggiungo le cards all'output
+  output.innerHTML = cards;
+};
+
+
+// Funzione per aggiungere una nuova cards all'array
+function addMember(event) {
+  event.preventDefault();
+
+  // Seleziono i valori degli input
+const name = newName.value;
+const role = newRole.value;
+const email = newEmail.value;
+const img = newImage.value;
+
+// Creo nuovo oggetto del nuovo membro del team
+const newMember = {
+  name,
+  role,
+  email,
+  img
+}
+
+// Aggiungo il nuovo membro all'array
+teamMembers.push(newMember);
+
+// Richiamo la funzione per far apparire in pagina l'array con il nuovo membro aggiunto
+teamCards();
+
+// Ripulisco il form dopo l'invio dei dati
+form.reset();
+
+}

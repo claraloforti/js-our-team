@@ -1,17 +1,3 @@
 .color-fucsia {
     color: rgb(201, 8, 124);
 }
-
-img {
-    max-width: 100%;
-}
-
-.team-container {
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.team-card{
-    width: calc(100% / 3 - (40px / 3));
-    
-}

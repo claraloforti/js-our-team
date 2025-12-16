@@ -65,7 +65,7 @@ function teamCards() {
   for (let i = 0; i < teamMembers.length; i++) {
     // destructuring delle proprietà del singolo oggetto membro
     const { name, role, email, img } = teamMembers[i];
-    // Ad ogni giro aggiungo alle cards un nuovo oggetto(singolo membro) con i relativi dati 
+    // Ad ogni iterazione genero l'html della singola card membro, aggiungendola all'output da mostrare in pagina
     cards += `<div class="team-card">
       <div class="card-image">
         <img src="${img}" alt="${name}"/>

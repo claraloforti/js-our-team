@@ -48,7 +48,7 @@ teamCards();
 const form = document.getElementById("member-form");
 const newName = document.getElementById('name');
 const newRole = document.getElementById('role');
-const newEmail= document.getElementById('email');
+const newEmail = document.getElementById('email');
 const newImage = document.getElementById('image');
 
 
@@ -66,14 +66,14 @@ function teamCards() {
     // destructuring delle proprietà del singolo oggetto membro
     const { name, role, email, img } = teamMembers[i];
     // Ad ogni iterazione genero l'html della singola card membro, aggiungendola all'output da mostrare in pagina
-    cards += `<div class="team-card col-md-4 col-12 bg-black text-white text-start d-flex gap-4 p-0">
+    cards += `<div class="team-card col-lg-4 col-md-6 col-12 bg-black text-white text-start d-flex gap-4">
       <div class="card-image">
-        <img src="${img}" alt="${name}" class="img-top">
+        <img src="${img}" alt="${name}">
       </div>
       <div class="card-text d-flex flex-column justify-content-center">
         <h3>${name}</h3>
         <p>${role}</p>
-        <p>${email}</p>
+        <p class="text-info">${email}</p>
       </div>
     </div>
     `;
@@ -88,26 +88,26 @@ function addMember(event) {
   event.preventDefault();
 
   // Seleziono i valori degli input
-const name = newName.value;
-const role = newRole.value;
-const email = newEmail.value;
-const img = newImage.value;
+  const name = newName.value;
+  const role = newRole.value;
+  const email = newEmail.value;
+  const img = newImage.value;
 
-// Creo nuovo oggetto del nuovo membro del team
-const newMember = {
-  name,
-  role,
-  email,
-  img
-}
+  // Creo nuovo oggetto del nuovo membro del team
+  const newMember = {
+    name,
+    role,
+    email,
+    img
+  }
 
-// Aggiungo il nuovo membro all'array
-teamMembers.push(newMember);
+  // Aggiungo il nuovo membro all'array
+  teamMembers.push(newMember);
 
-// Richiamo la funzione per far apparire in pagina l'array con il nuovo membro aggiunto
-teamCards();
+  // Richiamo la funzione per far apparire in pagina l'array con il nuovo membro aggiunto
+  teamCards();
 
-// Ripulisco il form dopo l'invio dei dati
-form.reset();
+  // Ripulisco il form dopo l'invio dei dati
+  form.reset();
 
 }

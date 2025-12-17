@@ -39,10 +39,10 @@ const teamMembers = [
 
 // SETUP
 // Mostro in pagina le cards dei membri del team
-const output = document.querySelector(".team-container");
+const myOutput = document.querySelector(".team-container");
 
 // Richiamo funzione per far spuntare in pagina le cards membri
-teamCards();
+teamCards(teamMembers, myOutput);
 
 // Seleziono elementi form
 const form = document.getElementById("member-form");
@@ -59,27 +59,36 @@ form.addEventListener("submit", addMember);
 // FUNZIONI
 
 // Funzione per mostrare le cards in pagina
-function teamCards() {
+function teamCards(myArray, myOutput) {
   let cards = "";
   // Ciclo l'array dei membri
-  for (let i = 0; i < teamMembers.length; i++) {
-    // destructuring delle proprietà del singolo oggetto membro
-    const { name, role, email, img } = teamMembers[i];
-    // Ad ogni iterazione genero l'html della singola card membro, aggiungendola all'output da mostrare in pagina
-    cards += `<div class="team-card">
-                <div class="card-image">
-                <img src="${img}" alt="${name}">
-                </div>
-                <div class="card-text">
-                <h3>${name}</h3>
-                <p>${role}</p>
-                <p class="text-info">${email}</p>
-               </div>
-              </div>`;
+  for (let i = 0; i < myArray.length; i++) {
+    // Estrapolo ogni membro presente nell'array
+    const myMember = myArray[i];
+    // Ad ogni iterazione aggiungendo la singola card membro all'output da mostrare in pagina
+    cards += createCard(myMember);
   }
   // Aggiungo le cards all'output
-  output.innerHTML = cards;
+  myOutput.innerHTML = cards;
 };
+
+
+// Funzione che genera la card
+function createCard(member) {
+  // Genero l'HTML della singola card
+  const card = `<div class="team-card">
+                <div class="card-image">
+                <img src="${member.img}" alt="${member.name}">
+                </div>
+                <div class="card-text">
+                <h3>${member.name}</h3>
+                <p>${member.role}</p>
+                <p class="text-info">${member.email}</p>
+               </div>
+              </div>`;
+
+  return card;
+}
 
 
 // Funzione per aggiungere una nuova cards all'array
@@ -104,7 +113,7 @@ function addMember(event) {
   teamMembers.push(newMember);
 
   // Richiamo la funzione per far apparire in pagina l'array con il nuovo membro aggiunto
-  teamCards();
+  teamCards(teamMembers, myOutput);
 
   // Ripulisco il form dopo l'invio dei dati
   form.reset();
